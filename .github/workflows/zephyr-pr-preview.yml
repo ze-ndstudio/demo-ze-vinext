@@ -18,7 +18,7 @@ jobs:
     name: Build preview with Zephyr
     runs-on: ubuntu-latest
     env:
-      ZE_SECRET_TOKEN: ${{ secrets.ZEPHYR_AUTH_TOKEN }}
+      ZE_SECRET_TOKEN: ${{ secrets.ZE_SECRET_TOKEN }}
 
     steps:
       - name: Checkout repository
