@@ -1,0 +1,103 @@
+name: Zephyr PR Preview
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  zephyr-preview:
+    name: Build preview with Zephyr
+    runs-on: ubuntu-latest
+    env:
+      ZE_SECRET_TOKEN: ${{ secrets.ZE_SECRET_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and deploy preview
+        id: zephyr
+        shell: bash
+        run: |
+          set -o pipefail
+          pnpm build 2>&1 | tee zephyr-build.log
+
+          preview_url=$(python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          text = Path("zephyr-build.log").read_text()
+          matches = re.findall(r"https://[^\s]+", text)
+          print(matches[-1] if matches else "")
+          PY
+          )
+
+          if [ -z "$preview_url" ]; then
+            echo "Could not find a Zephyr preview URL in build output." >&2
+            exit 1
+          fi
+
+          echo "preview_url=$preview_url" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview link on PR
+        if: ${{ success() }}
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: ${{ steps.zephyr.outputs.preview_url }}
+        with:
+          script: |
+            const marker = '<!-- zephyr-pr-preview -->'
+            const body = [
+              marker,
+              `Zephyr preview is ready: ${process.env.PREVIEW_URL}`,
+            ].join('\n')
+
+            const { owner, repo } = context.repo
+            const issue_number = context.issue.number
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+            })
+
+            const existing = comments.find((comment) => comment.body && comment.body.includes(marker))
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              })
+            }
