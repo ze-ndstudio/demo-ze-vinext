@@ -1,0 +1,29 @@
+{
+  "_framework-Ce_Irb5n.js": {
+    "file": "assets/framework-Ce_Irb5n.js",
+    "name": "framework"
+  },
+  "virtual:vinext-app-browser-entry": {
+    "file": "assets/index-DZPn1doz.js",
+    "name": "index",
+    "src": "virtual:vinext-app-browser-entry",
+    "isEntry": true,
+    "imports": [
+      "_framework-Ce_Irb5n.js"
+    ],
+    "dynamicImports": [
+      "virtual:vite-rsc/client-references/group/facade:virtual:cloudflare/worker-entry",
+      "virtual:vite-rsc/client-references/group/facade:virtual:cloudflare/worker-entry"
+    ]
+  },
+  "virtual:vite-rsc/client-references/group/facade:virtual:cloudflare/worker-entry": {
+    "file": "assets/worker-entry-C9rwIVC_.js",
+    "name": "worker-entry",
+    "src": "virtual:vite-rsc/client-references/group/facade:virtual:cloudflare/worker-entry",
+    "isDynamicEntry": true,
+    "imports": [
+      "_framework-Ce_Irb5n.js",
+      "virtual:vinext-app-browser-entry"
+    ]
+  }
+}
