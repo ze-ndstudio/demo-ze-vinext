@@ -28,3 +28,42 @@ content:
         label: Image Alt Text
         type: string
         required: true
+      - name: productsEyebrow
+        label: Products Eyebrow
+        type: string
+      - name: productsTitle
+        label: Products Title
+        type: string
+        required: true
+      - name: productsDescription
+        label: Products Description
+        type: text
+        required: true
+      - name: products
+        label: Products
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Product Name
+            type: string
+            required: true
+          - name: category
+            label: Category
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: price
+            label: Price
+            type: string
+            required: true
+          - name: badge
+            label: Badge
+            type: string
+          - name: accent
+            label: Accent Color
+            type: string
+            required: true

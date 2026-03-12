@@ -3,5 +3,50 @@
   "title": "Edit this homepage without touching the app code",
   "description": "This demo page reads a JSON file managed by Pages CMS. Change the text, swap the image, save in the CMS, and the site updates from the committed content. Noob",
   "image": "/uploads/pages-demo.svg",
-  "imageAlt": "Abstract illustration showing a CMS editing panel sending content into a rendered website"
+  "imageAlt": "Abstract illustration showing a CMS editing panel sending content into a rendered website",
+  "productsEyebrow": "Featured Collection",
+  "productsTitle": "A sortable product carousel driven by the CMS",
+  "productsDescription": "Reorder these products in Pages CMS to change the carousel sequence without editing the component. Each card reads straight from the homepage content file.",
+  "products": [
+    {
+      "name": "Dune Carryall",
+      "category": "Travel",
+      "description": "Soft canvas weekender with vegetable-tanned straps and a structured base for quick overnight packing.",
+      "price": "$168",
+      "badge": "Best Seller",
+      "accent": "#c7744b"
+    },
+    {
+      "name": "Cinder Bottle",
+      "category": "Everyday",
+      "description": "Insulated steel bottle with a powder-coated finish, hidden loop cap, and all-day temperature control.",
+      "price": "$42",
+      "badge": "New",
+      "accent": "#3d6f73"
+    },
+    {
+      "name": "Mesa Lamp",
+      "category": "Home",
+      "description": "Compact table lamp with a warm linen shade and dimmable glow built for desks, shelves, and reading nooks.",
+      "price": "$96",
+      "badge": "Studio Pick",
+      "accent": "#d0a046"
+    },
+    {
+      "name": "Harbor Journal",
+      "category": "Workspace",
+      "description": "Thread-bound notebook with recycled paper, lay-flat stitching, and a durable cover that wears in over time.",
+      "price": "$28",
+      "badge": "Limited Run",
+      "accent": "#5f7f62"
+    },
+    {
+      "name": "Slate Speaker",
+      "category": "Audio",
+      "description": "Portable bluetooth speaker wrapped in woven fabric with balanced sound for kitchens, patios, and desks.",
+      "price": "$124",
+      "badge": "Popular",
+      "accent": "#775b8a"
+    }
+  ]
 }
