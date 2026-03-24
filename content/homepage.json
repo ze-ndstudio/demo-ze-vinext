@@ -1,6 +1,6 @@
 {
   "eyebrow": "ViNext Demo - Are you there?",
-  "title": "Edit this homepage without touching the app code YAY",
+  "title": "Edit this homepage without touching the app code Exposed secret",
   "description": "This demo page reads a JSON file managed by Pages CMS. Change the text, swap the image, save in the CMS, and the site updates from the committed content. Noob",
   "image": "/uploads/pages-demo.svg",
   "imageAlt": "Abstract illustration showing a CMS editing panel sending content into a rendered website"
